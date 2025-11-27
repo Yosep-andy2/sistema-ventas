@@ -5,27 +5,29 @@ const obtenerClientes = (callback) => {
     db.query('SELECT * FROM clientes', callback);
 };
 
-// Obtener por ID
+// Obtener cliente por ID
 const obtenerClientePorId = (id, callback) => {
     db.query('SELECT * FROM clientes WHERE id = ?', [id], callback);
 };
 
 // Crear cliente
 const crearCliente = (datos, callback) => {
-    const { nombre, correo, telefono } = datos;
+    const { nombre, documento_identidad, direccion, telefono } = datos;
+
     db.query(
-        'INSERT INTO clientes (nombre, correo, telefono) VALUES (?, ?, ?)',
-        [nombre, correo, telefono],
+        'INSERT INTO clientes (nombre, documento_identidad, direccion, telefono) VALUES (?, ?, ?, ?)',
+        [nombre, documento_identidad, direccion, telefono],
         callback
     );
 };
 
 // Actualizar cliente
 const actualizarCliente = (id, datos, callback) => {
-    const { nombre, correo, telefono } = datos;
+    const { nombre, documento_identidad, direccion, telefono } = datos;
+
     db.query(
-        'UPDATE clientes SET nombre = ?, correo = ?, telefono = ? WHERE id = ?',
-        [nombre, correo, telefono, id],
+        'UPDATE clientes SET nombre = ?, documento_identidad = ?, direccion = ?, telefono = ? WHERE id = ?',
+        [nombre, documento_identidad, direccion, telefono, id],
         callback
     );
 };
